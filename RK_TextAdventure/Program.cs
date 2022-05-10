@@ -71,7 +71,7 @@ namespace RK_TextAdventure
             Dialog dD = cD.AddAOption("Go to the bathroom");
             Dialog dE = cD.AddAOption("Go to the back garden");
 
-            Console.WriteLine("Welcome to MisteriousHouse. You're not the first detective man to arrive...");
+            Console.WriteLine("Welcome to MisteriousHouse. You're not the first detective to arrive...");
             Console.WriteLine("Tell me your name, newbie");
             playerName = Console.ReadLine();
             Console.Clear();
@@ -79,7 +79,7 @@ namespace RK_TextAdventure
             Console.WriteLine("Welcome to this adventure, "+playerName+".");
             Thread.Sleep(1000);
             Console.Write("Let's begin.");
-            //PrintWaiting();
+            PrintWaiting();
             Console.Clear();
 
             //start the game
@@ -89,7 +89,7 @@ namespace RK_TextAdventure
         static void MoveTo(Door targetDoor, bool stayInRoom = false)
         {
             Console.Clear();
-            PrintWaiting();
+            //PrintWaiting();
 
             if (!stayInRoom)
             {
