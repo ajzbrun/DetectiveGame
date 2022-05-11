@@ -17,7 +17,6 @@ namespace RK_TextAdventure
         {
             InitializeGame();
 
-
             Console.ReadKey();
         }
 
@@ -28,10 +27,10 @@ namespace RK_TextAdventure
         {
             Console.Clear();
 
-            //Lineal structure data
-            Inventory = new List<Item>(); //we create the empty invetory
-            Item gardenKey = new Item(1, "Back Garden Key", "This key enables you to go into the back garden");
+            //Lineal structure data & sorting
+            Inventory = new List<Item>();
             Item flashLight = new Item(2, "Flashlight", "It will serve you to find more objects hidden in the rooms");
+            Item gardenKey = new Item(1, "Back Garden Key", "This key enables you to go into the back garden", flashLight);
 
             //graph structure
             Room roomA = new Room("Hall", 3);
@@ -64,14 +63,9 @@ namespace RK_TextAdventure
             Map.Add(roomE);
 
             //tree structure
-            Dialogs = new Dialog("Welcome");
-            Dialog bD = Dialogs.AddAOption("Go to kitchen");
-            Dialog cD = Dialogs.AddBOption("Go to living room");
-            bD.AddAOption("You cant do anything here");
-            Dialog dD = cD.AddAOption("Go to the bathroom");
-            Dialog dE = cD.AddAOption("Go to the back garden");
+            //Dialogs = new Dialog("Welcome");
 
-            Console.WriteLine("Welcome to MisteriousHouse. You're not the first detective to arrive...");
+            Console.WriteLine("Welcome to this house. You're not the first detective to arrive...");
             Console.WriteLine("Tell me your name, newbie");
             playerName = Console.ReadLine();
             Console.Clear();
@@ -89,7 +83,6 @@ namespace RK_TextAdventure
         static void MoveTo(Door targetDoor, bool stayInRoom = false)
         {
             Console.Clear();
-            //PrintWaiting();
 
             if (!stayInRoom)
             {
@@ -109,9 +102,9 @@ namespace RK_TextAdventure
                     {
                         if (!Inventory.Contains(currentRoom.HasItem())) //check if the item has already been found
                         {
-                            if (currentRoom.HasItem().GetName().ToLower().Contains("key")) //if it's a key, we'll only find it if we already found a flashlight
+                            if (currentRoom.HasItem().GetDependantItem() != null) //check if the item has another dependant item
                             {
-                                if (Inventory.Find(i => i.GetName().ToLower().Contains("flashlight")) != null)
+                                if (Inventory.Find(i => i == currentRoom.HasItem().GetDependantItem()) != null) //we check if we found the dependant first
                                     AddItemToInventory(currentRoom.HasItem());
                             }
                             else
@@ -251,7 +244,7 @@ namespace RK_TextAdventure
             Console.WriteLine("\nGood news! You've found a " + newItem.GetName()+". It's now available in your inventory, keep searching...\n");
             Inventory.Add(newItem);
 
-            //TODO: here I should sort the invetory (item list) with one of the sort methods
+            //TODO: here I should sort the invetory with one of the sort methods
 
 
         }

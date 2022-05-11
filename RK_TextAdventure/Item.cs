@@ -11,17 +11,24 @@ namespace RK_TextAdventure
         int Id;
         string Name;
         string Description;
+        Item dependantItem;
 
-        public Item(int id, string name, string desc)
+        public Item(int id, string name, string desc, Item dep = null)
         {
             Id = id;
             Name = name;
             Description = desc;
+            dependantItem = dep;
         }
 
         public string GetName()
         {
             return Name;
+        }
+
+        public Item GetDependantItem()
+        {
+            return dependantItem;
         }
     }
 }
