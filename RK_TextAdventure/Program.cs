@@ -62,9 +62,6 @@ namespace RK_TextAdventure
             Map.Add(roomD);
             Map.Add(roomE);
 
-            //tree structure
-            //Dialogs = new Dialog("Welcome");
-
             Console.WriteLine("Welcome to this house. You're not the first detective to arrive...");
             Console.WriteLine("Tell me your name, newbie");
             playerName = Console.ReadLine();
@@ -244,9 +241,19 @@ namespace RK_TextAdventure
             Console.WriteLine("\nGood news! You've found a " + newItem.GetName()+". It's now available in your inventory, keep searching...\n");
             Inventory.Add(newItem);
 
-            //TODO: here I should sort the invetory with one of the sort methods
-
-
+            //sort the inventory by alphabet with bubble sort type
+            for (int i=0; i<Inventory.Count() -1; i++)
+            {
+                for (int j = i; j < Inventory.Count() - 1; j++)
+                {
+                    if (Inventory[j].GetName()[0] > Inventory[j + 1].GetName()[0] || (Inventory[j].GetName()[0] == Inventory[j + 1].GetName()[0] && Inventory[j].GetName()[1] > Inventory[j + 1].GetName()[1]))
+                    {
+                        var aux = Inventory[j];
+                        Inventory[j] = Inventory[j + 1];
+                        Inventory[j + 1] = aux;
+                    }
+                }
+            }
         }
     }
 }

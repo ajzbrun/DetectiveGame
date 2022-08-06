@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "RK_TextAdventure/1.0.0": {
+        "runtime": {
+          "RK_TextAdventure.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "RK_TextAdventure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
